@@ -139,16 +139,6 @@
         gsap.set(preloader, { display: 'none' });
       }
     });
-    heroIntro();
-  }
-
-  function heroIntro() {
-    gsap.timeline({ defaults: { ease: 'power3.out' } })
-      .to('.eyebrow', { opacity: 1, y: 0, duration: 0.9 }, 0.1)
-      .to('#hero h1', { opacity: 1, y: 0, duration: 1 }, 0.25)
-      .to('.tagline', { opacity: 1, y: 0, duration: 0.9 }, 0.45)
-      .to('.ctas', { opacity: 1, y: 0, duration: 0.9 }, 0.6)
-      .to('.trust', { opacity: 1, y: 0, duration: 0.9 }, 0.75);
   }
 
   /* ===== Lenis smooth scroll ===== */
@@ -162,19 +152,37 @@
 
   /* ===== ScrollTrigger frame player ===== */
   let heroDone = false;
+  const clamp01 = (v) => Math.max(0, Math.min(1, v));
+
+  const HERO_TEXT = [
+    { el: '.eyebrow', a: 0.02, b: 0.09, out: 0.5 },
+    { el: '#hero h1', a: 0.09, b: 0.17, out: 0.55 },
+    { el: '.tagline', a: 0.16, b: 0.24, out: 0.6 },
+    { el: '.ctas', a: 0.23, b: 0.31, out: 0.65 },
+    { el: '.trust', a: 0.3, b: 0.38, out: 0.7 }
+  ].map((t) => Object.assign({ node: $(t.el) }, t));
+
+  function updateHeroText(p) {
+    HERO_TEXT.forEach((t) => {
+      const node = t.node;
+      if (!node) return;
+      const o = clamp01((p - t.a) / (t.b - t.a)) * (1 - clamp01((p - t.out) / 0.06));
+      node.style.opacity = o;
+      node.style.transform = 'translateY(' + (26 - o * 26).toFixed(1) + 'px)';
+    });
+  }
+
   function initHeroScrub() {
     if (heroDone) return;
     heroDone = true;
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
-    gsap.set('.eyebrow, #hero h1, .tagline, .ctas, .trust', { opacity: 0, y: 30 });
-    gsap.set('.eyebrow', { opacity: 0, y: -14 });
+    updateHeroText(0);
 
     ScrollTrigger.create({
       trigger: '#hero',
       start: 'top top',
-      end: '+=' + (FRAME_COUNT - 1) * 8,
+      end: '+=' + (FRAME_COUNT - 1) * 14,
       pin: true,
       scrub: true,
       snap: {
@@ -183,28 +191,17 @@
         ease: 'power1.inOut'
       },
       onUpdate: (self) => {
-        const f = Math.max(1, Math.min(FRAME_COUNT, Math.round(self.progress * (FRAME_COUNT - 1)) + 1));
+        const p = self.progress;
+        const f = Math.max(1, Math.min(FRAME_COUNT, Math.round(p * (FRAME_COUNT - 1)) + 1));
         if (f !== currentFrame) {
           requestDraw(f);
           updateCounter(f);
         }
-        $('#scr-progress').style.height = (self.progress * 100).toFixed(1) + '%';
+        $('#scr-progress').style.height = (p * 100).toFixed(1) + '%';
         const hint = $('#scroll-hint');
-        if (self.progress > 0.04) hint.style.opacity = Math.max(0, 1 - self.progress * 8);
+        if (p > 0.02) hint.style.opacity = Math.max(0, 1 - p * 6);
+        updateHeroText(p);
       }
-    });
-
-    gsap.to('.content', {
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: '+=14%',
-        scrub: true
-      },
-      opacity: 0.22,
-      scale: 0.96,
-      y: -40,
-      ease: 'none'
     });
   }
 
