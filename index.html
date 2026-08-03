@@ -96,7 +96,7 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
 }
 #preloader::after{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 50% 40%,rgba(168,85,247,.14),transparent 70%);pointer-events:none}
 #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.pl-logo{width:104px;height:auto;animation:plFloat 3s ease-in-out infinite;position:relative}
+.pl-logo{width:132px;height:auto;animation:plFloat 3s ease-in-out infinite;position:relative}
 @keyframes plFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .pl-pct{font-family:var(--display);font-weight:700;font-size:34px;color:#fff;letter-spacing:.02em;position:relative}
 .pl-pct span{color:var(--purple)}
@@ -116,7 +116,7 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
 }
 #nav.scrolled{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(15,23,42,.06);padding:12px 28px}
 #nav .brand{display:flex;align-items:center;gap:12px;position:relative}
-#nav .brand img{height:38px;width:auto;transition:opacity .3s ease}
+#nav .brand img{height:46px;width:auto;transition:opacity .3s ease}
 #nav .brand .logo-dark{position:absolute;opacity:0}
 #nav.scrolled .logo-light{opacity:0}
 #nav.scrolled .logo-dark{opacity:1}
@@ -171,17 +171,30 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
 }
 #hero .eyebrow{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;width:max-content;
-  font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--purple);
+  font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#e9d5ff;
   margin-bottom:24px;opacity:0;
+  padding:11px 20px;border-radius:999px;
+  background:linear-gradient(120deg,rgba(168,85,247,.28),rgba(10,10,10,.42));
+  border:1px solid rgba(168,85,247,.32);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
 }
-#hero .eyebrow::before{content:"";width:38px;height:1px;background:var(--purple)}
+#hero .eyebrow::before{content:"";width:38px;height:1px;background:var(--purple);box-shadow:0 0 8px var(--purple)}
 #hero h1{
   font-size:clamp(44px,8.2vw,106px);line-height:1.02;color:#fff;
   max-width:18ch;opacity:0;font-weight:400;
+  padding:22px 36px;border-radius:30px;
+  background:linear-gradient(120deg,rgba(10,10,10,.52),rgba(34,18,70,.3) 55%,rgba(10,10,10,.16));
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 24px 70px -24px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.08);
 }
 #hero .tagline{
-  margin:26px auto 0;max-width:560px;color:rgba(255,255,255,.82);
+  margin:26px auto 0;max-width:560px;color:rgba(255,255,255,.9);
   font-size:17px;font-weight:400;line-height:1.7;opacity:0;
+  padding:16px 26px;border-radius:20px;
+  background:linear-gradient(120deg,rgba(10,10,10,.55),rgba(18,12,42,.3));
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 16px 44px -18px rgba(0,0,0,.6);
 }
 #hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px;opacity:0}
 .btn{
@@ -195,7 +208,9 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
 .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px)}
 .btn-ghost:hover{background:rgba(255,255,255,.16);border-color:var(--purple)}
 #hero .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin-top:34px;opacity:0}
-#hero .trust span{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.78)}
+#hero .trust span{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);
+  background:linear-gradient(120deg,rgba(10,10,10,.5),rgba(22,14,48,.35));border:1px solid rgba(255,255,255,.14);
+  padding:9px 16px;border-radius:999px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 #hero .trust i{width:6px;height:6px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
 #hero .scroll-hint{
   position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:6;
@@ -451,7 +466,7 @@ footer{background:#050505;color:rgba(255,255,255,.55);padding:0 0 36px;position:
 footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),transparent)}
 .ft-top{display:grid;grid-template-columns:1fr;gap:44px;padding:72px 0 48px;border-bottom:1px solid rgba(255,255,255,.08)}
 @media(min-width:960px){.ft-top{grid-template-columns:1.7fr 1fr 1fr 1.25fr}}
-.ft-brand img{height:46px;width:auto;margin-bottom:20px}
+.ft-brand img{height:54px;width:auto;margin-bottom:20px}
 .ft-brand h4{color:#fff;font-size:20px;margin-bottom:8px}
 .ft-brand p{font-size:13.5px;line-height:1.75;max-width:360px}
 .ft-brand .mini{margin-top:16px;display:grid;gap:6px;font-size:12.5px;color:rgba(255,255,255,.45)}
@@ -526,7 +541,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
   }
   #nav.scrolled{background:rgba(10,10,10,.66);padding:12px 18px}
   #nav .brand{position:absolute;left:50%;transform:translateX(-50%)}
-  #nav .brand img{height:34px}
+  #nav .brand img{height:42px}
   #nav .burger{margin-left:auto}
   #nav .burger span{background:rgba(255,255,255,.92)}
   #nav.scrolled .burger span{background:#fff}
@@ -542,7 +557,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
   }
   .ft-top{grid-template-columns:1fr;gap:24px;padding:38px 24px 24px}
   .ft-brand{text-align:center}
-  .ft-brand img{height:42px;margin:0 auto 14px}
+  .ft-brand img{height:50px;margin:0 auto 14px}
   .ft-brand p{max-width:none;font-size:12.5px;line-height:1.7}
   .ft-brand .mini{justify-items:center;gap:4px}
   .ft-col:not(:last-child){display:none}
@@ -580,7 +595,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
 
 <!-- Preloader -->
 <div id="preloader">
-  <img class="pl-logo" src="img/logo.png" alt="InteliTech">
+  <img class="pl-logo" src="img/logo.svg" alt="InteliTech">
   <div class="pl-pct num"><span id="pl-num">0</span>%</div>
   <div class="pl-bar"><i id="pl-bar"></i></div>
   <div class="pl-hint" id="pl-hint">0 / 192 frames</div>
@@ -590,8 +605,8 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
 <!-- Navbar -->
 <header id="nav">
   <a class="brand" href="#inicio" aria-label="InteliTech">
-    <img class="logo-light" src="img/logo.png" alt="InteliTech">
-    <img class="logo-dark" src="img/logo-dark.png" alt="InteliTech">
+    <img class="logo-light" src="img/logo.svg" alt="InteliTech">
+    <img class="logo-dark" src="img/logo-dark.svg" alt="InteliTech">
   </a>
   <nav class="links" aria-label="Principal">
     <a href="#inicio">Inicio</a>
@@ -970,7 +985,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
   <div class="wrap">
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="img/logo.png" alt="InteliTech">
+        <img src="img/logo.svg" alt="InteliTech">
         <h4>InteliTech</h4>
         <p>Servicio Técnico Especializado de Alta Gama. Reparación de precisión en Santiago de Chile: celulares, notebooks, consolas, Smart TV y corporativo.</p>
         <div class="mini">

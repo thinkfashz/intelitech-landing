@@ -101,6 +101,8 @@
   }
 
   /* ===== Preloader ===== */
+  resizeCanvas();
+
   const preloader = $('#preloader');
   const plNum = $('#pl-num');
   const plBar = $('#pl-bar');
