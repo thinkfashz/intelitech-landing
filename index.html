@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InteliTech | Servicio Técnico Especializado de Alta Gama</title>
+<meta name="description" content="Especialistas en reparación de celulares, notebooks, consolas, Smart TVs y servicio técnico corporativo. Repuestos originales y garantía escrita hasta 12 meses. Santiago, Chile.">
+<meta name="keywords" content="reparacion celulares, cambio de pantalla, servicio tecnico ps5, reparacion notebook, servicio tecnico tv, intelitech, reparacion iphone, reparacion samsung, servicio tecnico santiago">
+<meta name="theme-color" content="#A855F7">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thinkfashz.github.io/intelitech-landing/">
+<meta property="og:title" content="InteliTech | Servicio Técnico Especializado de Alta Gama">
+<meta property="og:description" content="Reparación profesional de celulares, notebooks, consolas y Smart TVs con garantía escrita y entrega en el día.">
+<meta property="og:image" content="https://thinkfashz.github.io/intelitech-landing/img/og-image.png">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="InteliTech | Servicio Técnico Especializado">
+<meta name="twitter:description" content="Servicio técnico premium para celulares, notebooks, consolas y televisores. Repuestos originales, garantía escrita.">
+<meta name="twitter:image" content="https://thinkfashz.github.io/intelitech-landing/img/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "InteliTech Servicio Técnico",
+  "image": "https://res.cloudinary.com/disghf6xc/image/upload/v1785554325/5B841C1C-8C06-4658-8ED0-C1DB56FAECE9_eulqzk_1_cery7y.png",
+  "telephone": "+56948922008",
+  "url": "https://wa.me/56948922008",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santiago",
+    "addressCountry": "CL"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday"],
+      "opens": "10:00",
+      "closes": "14:00"
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  --purple:#A855F7;
+  --purple-deep:#9333EA;
+  --purple-dark:#7E22CE;
+  --bg:#FAFAFD;
+  --ink:#0F172A;
+  --black:#0A0A0A;
+  --serif:'Libertinus Serif',Georgia,serif;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --display:'Syne',var(--sans);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body.locked{overflow:hidden}
+::selection{background:var(--purple-deep);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+h1,h2,h3,.serif{font-family:var(--serif)}
+.num{font-family:var(--display)}
+
+/* ===== Preloader ===== */
+#preloader{
+  position:fixed;inset:0;z-index:1000;
+  background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:26px;transition:opacity .7s ease,visibility .7s ease;
+}
+#preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.pl-logo{width:104px;height:auto;animation:plFloat 3s ease-in-out infinite}
+@keyframes plFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pl-pct{font-family:var(--display);font-weight:700;font-size:34px;color:#fff;letter-spacing:.02em}
+.pl-pct span{color:var(--purple)}
+.pl-bar{width:min(320px,70vw);height:3px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.pl-bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--purple-deep),var(--purple));border-radius:99px;transition:width .25s ease}
+.pl-hint{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:600}
+.pl-brand{position:absolute;bottom:34px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+
+/* ===== Partículas 3D ===== */
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ===== Navbar ===== */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:600;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;transition:background .4s ease,box-shadow .4s ease,padding .4s ease;
+}
+#nav.scrolled{
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 rgba(15,23,42,.06);
+  padding:12px 28px;
+}
+#nav .brand{display:flex;align-items:center;gap:12px}
+#nav .brand img{height:38px;width:auto;transition:opacity .3s ease}
+#nav .brand .logo-dark{position:absolute;opacity:0}
+#nav.scrolled .logo-light{opacity:0}
+#nav.scrolled .logo-dark{opacity:1}
+#nav .links{display:none;align-items:center;gap:4px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.25);padding:5px;border-radius:999px;backdrop-filter:blur(10px)}
+#nav.scrolled .links{background:rgba(241,241,249,.8);border-color:rgba(15,23,42,.07)}
+#nav .links a{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);padding:8px 16px;border-radius:999px;transition:all .25s ease}
+#nav.scrolled .links a{color:var(--ink)}
+#nav .links a:hover{background:var(--purple);color:#fff}
+#nav .cta{display:none;align-items:center;gap:8px;background:var(--purple-deep);color:#fff;font-weight:700;font-size:12.5px;padding:11px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(168,85,247,.35);transition:transform .2s ease,background .2s ease}
+#nav .cta:hover{background:var(--purple-dark);transform:translateY(-1px)}
+#nav .cta svg{width:15px;height:15px;fill:#fff}
+#nav .burger{display:flex;flex-direction:column;gap:5px;padding:10px;z-index:800}
+#nav .burger span{width:24px;height:2px;background:rgba(255,255,255,.9);border-radius:2px;transition:all .3s ease}
+#nav.scrolled .burger span{background:var(--ink)}
+@media(min-width:1024px){#nav .links{display:flex}#nav .cta{display:inline-flex}#nav .burger{display:none}}
+#nav .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav .burger.open span:nth-child(2){opacity:0}
+#nav .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#nav .burger.open span{background:#fff}
+
+/* ===== Menú móvil ===== */
+#mobile-menu{
+  position:fixed;inset:0;z-index:700;background:rgba(10,10,10,.97);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;
+}
+#mobile-menu.open{opacity:1;visibility:visible}
+#mobile-menu a{
+  font-family:var(--serif);font-size:30px;color:#fff;padding:10px 24px;
+  opacity:0;transform:translateY(18px);transition:opacity .4s ease,transform .4s ease,color .25s ease;
+}
+#mobile-menu a:hover{color:var(--purple)}
+#mobile-menu.open a{opacity:1;transform:none}
+#mobile-menu .m-cta{margin-top:26px;background:var(--purple-deep);color:#fff!important;font-family:var(--sans);font-size:14px;font-weight:800;letter-spacing:.06em;padding:16px 34px;border-radius:999px;text-transform:uppercase}
+
+/* ===== Hero ===== */
+#hero{position:relative;height:100vh;overflow:hidden;background:#000}
+#hero canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#hero .vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.55) 100%),
+             linear-gradient(to bottom,rgba(10,10,10,.5) 0%,transparent 22%),
+             linear-gradient(to top,rgba(10,10,10,.75) 0%,transparent 30%),
+             linear-gradient(to right,rgba(10,10,10,.55) 0%,transparent 30%);
+}
+#hero .content{
+  position:absolute;inset:0;z-index:5;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 28px;max-width:1240px;margin:0 auto;width:100%;
+}
+#hero .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;width:max-content;
+  font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--purple);
+  margin-bottom:22px;opacity:0;
+}
+#hero .eyebrow::before{content:"";width:38px;height:1px;background:var(--purple)}
+#hero h1{
+  font-size:clamp(46px,8.2vw,108px);line-height:.98;color:#fff;font-weight:700;
+  max-width:15ch;opacity:0;
+}
+#hero h1 em{font-style:italic;background:linear-gradient(100deg,var(--purple) 10%,#c084fc 60%,#e9d5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#hero .tagline{
+  margin-top:26px;max-width:520px;color:rgba(255,255,255,.82);
+  font-size:16.5px;font-weight:400;line-height:1.65;opacity:0;
+}
+#hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;opacity:0}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:800;font-size:14px;letter-spacing:.02em;border-radius:16px;
+  padding:17px 28px;transition:all .25s ease;
+}
+.btn-wa{background:var(--purple-deep);color:#fff;box-shadow:0 14px 34px rgba(168,85,247,.4)}
+.btn-wa:hover{background:var(--purple-dark);transform:translateY(-2px)}
+.btn-wa svg{width:17px;height:17px;fill:#fff}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.16);border-color:var(--purple)}
+#hero .trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:34px;opacity:0}
+#hero .trust span{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.78)}
+#hero .trust i{width:6px;height:6px;border-radius:50%;background:var(--purple);box-shadow:0 0 10px var(--purple)}
+#hero .scroll-hint{
+  position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,255,255,.65);
+  transition:opacity .5s ease;
+}
+#hero .scroll-hint .line{width:1px;height:54px;background:linear-gradient(to bottom,var(--purple),transparent);position:relative;overflow:hidden}
+#hero .scroll-hint .line::after{content:"";position:absolute;top:-40%;left:0;width:100%;height:40%;background:#fff;animation:scrollLine 1.8s ease-in-out infinite}
+@keyframes scrollLine{0%{top:-40%}100%{top:110%}}
+#hero .frame-counter{
+  position:absolute;right:26px;bottom:26px;z-index:6;
+  font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.85);
+  background:rgba(10,10,10,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);
+  padding:9px 14px;border-radius:10px;
+}
+#hero .frame-counter b{color:var(--purple)}
+#hero .scroll-progress{
+  position:absolute;right:26px;top:50%;transform:translateY(-50%);z-index:6;
+  width:2px;height:180px;background:rgba(255,255,255,.14);border-radius:2px;overflow:hidden;
+}
+#hero .scroll-progress i{display:block;width:100%;height:0%;background:linear-gradient(to bottom,var(--purple),#c084fc);border-radius:2px}
+
+/* ===== Secciones generales ===== */
+section{position:relative;z-index:5}
+.sec-head{max-width:720px;margin-bottom:56px}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--purple-deep);margin-bottom:18px;
+}
+.sec-eyebrow::before{content:"";width:32px;height:1px;background:var(--purple)}
+.sec-title{font-size:clamp(34px,5vw,56px);line-height:1.05;font-weight:700;color:var(--ink)}
+.sec-sub{color:#5b6478;font-size:16.5px;line-height:1.7;margin-top:18px}
+
+/* ===== Cotizador ===== */
+#cotizador{padding:120px 0 110px}
+.qz-card{
+  background:#fff;border:1px solid rgba(15,23,42,.07);border-radius:28px;
+  box-shadow:0 30px 80px -30px rgba(15,23,42,.18);
+  overflow:hidden;
+}
+.qz-head{
+  background:linear-gradient(120deg,#0A0A0A,#161226 60%,#1b1230);
+  padding:34px 38px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;
+}
+.qz-head h3{color:#fff;font-size:22px;font-weight:700}
+.qz-head h3 span{color:var(--purple)}
+.qz-head p{color:rgba(255,255,255,.55);font-size:13px;margin-top:6px}
+.qz-step{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--purple)}
+.qz-body{padding:36px 38px;display:grid;grid-template-columns:1fr;gap:34px}
+@media(min-width:960px){.qz-body{grid-template-columns:1.35fr 1fr}}
+.qz-label{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#6b7280;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.qz-label i{width:5px;height:5px;border-radius:50%;background:var(--purple)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  padding:12px 18px;border-radius:999px;border:1.5px solid #e4e4ef;background:#f8f8fc;
+  font-size:13.5px;font-weight:700;color:#4b5563;transition:all .2s ease;
+}
+.chip:hover{border-color:var(--purple);color:var(--purple-deep)}
+.chip.active{background:linear-gradient(120deg,var(--purple-deep),var(--purple));border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(168,85,247,.35)}
+.qz-field{margin-top:24px}
+select.qz-select{
+  width:100%;padding:15px 18px;border-radius:14px;border:1.5px solid #e4e4ef;background:#f8f8fc;
+  font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink);appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%239333EA' stroke-width='2' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat:no-repeat;background-position:right 18px center;
+}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tier{
+  padding:14px 12px;border-radius:14px;border:1.5px solid #e4e4ef;background:#f8f8fc;text-align:center;
+  transition:all .2s ease;
+}
+.tier b{display:block;font-size:13.5px;color:var(--ink)}
+.tier small{display:block;margin-top:3px;font-size:11px;color:#8b93a5;font-weight:600}
+.tier.active{border-color:var(--purple);background:linear-gradient(160deg,#faf5ff,#f3e8ff);box-shadow:0 6px 18px rgba(168,85,247,.18)}
+.tier.active b{color:var(--purple-dark)}
+.qz-panel{
+  background:linear-gradient(160deg,#0A0A0A,#151128);border-radius:22px;padding:30px;
+  color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:22px;
+  position:relative;overflow:hidden;
+}
+.qz-panel::before{content:"";position:absolute;top:-70px;right:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.35),transparent 70%)}
+.qz-total{position:relative}
+.qz-total .lbl{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:700}
+.qz-total .clp{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,44px);line-height:1.05;margin-top:8px}
+.qz-total .clp span{color:var(--purple)}
+.qz-total .usd{font-size:14px;color:rgba(255,255,255,.6);margin-top:6px;font-weight:600}
+.qz-note{font-size:11.5px;line-height:1.6;color:rgba(255,255,255,.45);border-top:1px solid rgba(255,255,255,.1);padding-top:14px;position:relative}
+.qz-form{margin-top:24px;display:grid;gap:12px}
+.qz-form input{
+  width:100%;padding:15px 18px;border-radius:14px;border:1.5px solid #e4e4ef;background:#f8f8fc;
+  font-family:inherit;font-size:14.5px;font-weight:600;color:var(--ink);outline:none;transition:border .2s ease,box-shadow .2s ease;
+}
+.qz-form input:focus{border-color:var(--purple);box-shadow:0 0 0 4px rgba(168,85,247,.14)}
+.qz-submit{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(120deg,var(--purple-deep),var(--purple));color:#fff;
+  font-weight:800;font-size:14.5px;padding:17px;border-radius:14px;
+  box-shadow:0 12px 30px rgba(168,85,247,.4);transition:transform .2s ease;
+}
+.qz-submit:hover{transform:translateY(-2px)}
+.qz-submit svg{width:17px;height:17px;fill:#fff}
+
+/* ===== Filosofía ===== */
+#filosofia{background:var(--black);padding:150px 0;overflow:hidden}
+#filosofia .wrap{position:relative}
+.mani-line{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(40px,7.4vw,96px);line-height:1.02;color:#fff;
+  padding:26px 0;opacity:.14;transform:translateY(40px);
+  will-change:opacity,transform;
+}
+.mani-line em{font-style:italic;color:var(--purple)}
+.mani-line .accent{background:linear-gradient(100deg,var(--purple),#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ===== Servicios ===== */
+#servicios{padding:130px 0 110px;background:var(--bg)}
+.svc{display:grid;grid-template-columns:1fr;gap:34px;align-items:center;padding:70px 0;border-top:1px solid #ececf4}
+@media(min-width:960px){.svc{grid-template-columns:1fr 1.05fr}}
+.svc:nth-child(even) .svc-media{order:-1}
+@media(min-width:960px){.svc:nth-child(even) .svc-media{order:2}}
+.svc-num{
+  font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.24em;
+  color:var(--purple-deep);margin-bottom:16px;display:flex;align-items:center;gap:12px;
+}
+.svc-num::after{content:"";flex:0 0 44px;height:1px;background:var(--purple)}
+.svc h3{font-size:clamp(28px,3.6vw,42px);line-height:1.08;margin-bottom:16px}
+.svc h3 span{color:var(--purple-dark)}
+.svc p{color:#5b6478;line-height:1.75;font-size:15.5px;margin-bottom:22px}
+.svc ul{list-style:none;display:grid;gap:10px;margin-bottom:28px}
+.svc li{display:flex;gap:10px;font-size:14.5px;font-weight:600;color:#3c4458;line-height:1.5}
+.svc li::before{content:"✓";color:var(--purple-deep);font-weight:800}
+.svc .btn{padding:14px 24px;font-size:13px}
+.svc-media{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px -28px rgba(15,23,42,.4);aspect-ratio:9/12;max-height:520px}
+.svc-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.6,.2,1)}
+.svc:hover .svc-media img{transform:scale(1.05)}
+.svc-media .badge{
+  position:absolute;top:16px;left:16px;z-index:2;
+  background:rgba(10,10,10,.6);backdrop-filter:blur(10px);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.14em;padding:9px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+}
+.svc-media .badge i{color:var(--purple);font-style:normal}
+
+/* ===== Stats ===== */
+#stats{background:linear-gradient(180deg,var(--bg),#f3efff);padding:110px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(min-width:960px){.stats-grid{grid-template-columns:repeat(5,1fr)}}
+.stat{
+  background:#fff;border:1px solid rgba(15,23,42,.07);border-radius:20px;padding:30px 22px;
+  text-align:center;box-shadow:0 18px 50px -28px rgba(15,23,42,.25);
+}
+.stat .n{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,44px);color:var(--ink);line-height:1}
+.stat .n em{font-style:normal;background:linear-gradient(120deg,var(--purple-deep),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;margin-top:12px}
+.stat .d{font-size:12px;color:#9aa1b0;margin-top:8px;line-height:1.55}
+
+/* ===== Por qué elegirnos ===== */
+#porque{padding:130px 0;background:var(--bg)}
+.tiers-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:960px){.tiers-grid{grid-template-columns:repeat(4,1fr)}}
+.tier-card{
+  background:linear-gradient(175deg,#fff,#faf8ff);border:1px solid rgba(15,23,42,.07);
+  border-radius:24px;padding:34px 28px;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;
+}
+.tier-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -28px rgba(126,34,206,.4)}
+.tier-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple),transparent)}
+.tier-card .ico{width:52px;height:52px;border-radius:16px;background:linear-gradient(140deg,var(--purple-deep),var(--purple));display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 10px 24px rgba(168,85,247,.35)}
+.tier-card .ico svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tier-card h4{font-size:19px;margin-bottom:10px}
+.tier-card p{font-size:13.5px;color:#5b6478;line-height:1.65}
+.tier-card .tag{
+  display:inline-block;margin-top:16px;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--purple-dark);background:#f3e8ff;padding:6px 12px;border-radius:999px;
+}
+
+/* ===== Canales ===== */
+#canales{background:var(--black);padding:120px 0;position:relative;overflow:hidden}
+#canales::before{content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:900px;height:420px;background:radial-gradient(ellipse at center,rgba(168,85,247,.22),transparent 65%)}
+#canales .sec-title{color:#fff}
+#canales .sec-sub{color:rgba(255,255,255,.6)}
+#canales .sec-eyebrow{color:var(--purple)}
+.ch-grid{display:grid;grid-template-columns:1fr;gap:16px;position:relative}
+@media(min-width:960px){.ch-grid{grid-template-columns:repeat(3,1fr)}}
+.ch-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;
+  padding:30px;display:flex;align-items:center;gap:18px;transition:all .3s ease;
+}
+.ch-card:hover{border-color:var(--purple);background:rgba(168,85,247,.08);transform:translateY(-4px)}
+.ch-card .ic{width:50px;height:50px;border-radius:14px;background:linear-gradient(140deg,var(--purple-deep),var(--purple));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ch-card .ic svg{width:22px;height:22px;fill:#fff}
+.ch-card b{display:block;color:#fff;font-size:15px;margin-bottom:3px}
+.ch-card span{color:rgba(255,255,255,.55);font-size:12.5px}
+.ch-note{margin-top:26px;font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.04em;text-align:center;position:relative}
+
+/* ===== Contacto ===== */
+#contacto{padding:130px 0;background:var(--bg)}
+.ct-grid{display:grid;grid-template-columns:1fr;gap:40px}
+@media(min-width:960px){.ct-grid{grid-template-columns:1fr 1.1fr}}
+.ct-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid #ececf4}
+.ct-item .ic{width:44px;height:44px;border-radius:13px;background:#f3e8ff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ct-item .ic svg{width:19px;height:19px;fill:var(--purple-deep)}
+.ct-item b{display:block;font-size:14px;margin-bottom:3px}
+.ct-item p,.ct-item a{font-size:14px;color:#5b6478;line-height:1.55}
+.ct-item a{font-weight:700;color:var(--purple-dark)}
+.ct-item a:hover{text-decoration:underline}
+.ct-form{display:grid;gap:14px}
+.ct-form input,.ct-form textarea{
+  width:100%;padding:16px 18px;border-radius:14px;border:1.5px solid #e4e4ef;background:#fff;
+  font-family:inherit;font-size:14.5px;color:var(--ink);outline:none;transition:border .2s ease,box-shadow .2s ease;
+}
+.ct-form textarea{min-height:130px;resize:vertical}
+.ct-form input:focus,.ct-form textarea:focus{border-color:var(--purple);box-shadow:0 0 0 4px rgba(168,85,247,.14)}
+
+/* ===== Footer ===== */
+footer{background:#050505;color:rgba(255,255,255,.5);padding:70px 0 34px;position:relative;z-index:5}
+.ft-grid{display:grid;grid-template-columns:1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.08)}
+@media(min-width:960px){.ft-grid{grid-template-columns:1.6fr 1fr 1fr}}
+.ft-brand img{height:44px;width:auto;margin-bottom:18px}
+.ft-brand h4{color:#fff;font-size:19px;margin-bottom:8px}
+.ft-brand p{font-size:13.5px;line-height:1.7;max-width:340px}
+.ft-col h5{color:#fff;font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+.ft-col a,.ft-col p{display:block;font-size:13.5px;padding:5px 0;transition:color .2s ease}
+.ft-col a:hover{color:var(--purple)}
+.ft-music{margin-top:24px;font-size:11.5px;line-height:1.7;color:rgba(255,255,255,.35)}
+.ft-music a{display:inline;color:rgba(255,255,255,.55);padding:0}
+.ft-music a:hover{color:var(--purple)}
+.ft-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding-top:26px;font-size:12px}
+.ft-bottom .legal{display:flex;gap:18px;flex-wrap:wrap}
+.ft-bottom a:hover{color:var(--purple)}
+
+/* ===== Flotantes ===== */
+#wa-fab{
+  position:fixed;right:22px;bottom:22px;z-index:650;width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 14px 34px rgba(37,211,102,.45);transition:transform .25s ease;
+}
+#wa-fab:hover{transform:scale(1.1)}
+#wa-fab svg{width:28px;height:28px;fill:#fff}
+#music-btn{
+  position:fixed;left:22px;bottom:22px;z-index:650;width:54px;height:54px;border-radius:50%;
+  background:rgba(10,10,10,.75);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);
+  display:flex;align-items:center;justify-content:center;transition:transform .25s ease;
+}
+#music-btn:hover{transform:scale(1.08);border-color:var(--purple)}
+.eq{display:flex;align-items:flex-end;gap:3px;height:20px}
+.eq i{width:3px;background:var(--purple);border-radius:2px;height:40%;transition:height .2s ease}
+#music-btn.playing .eq i{animation:eq 1s ease-in-out infinite}
+#music-btn.playing .eq i:nth-child(2){animation-delay:.15s}
+#music-btn.playing .eq i:nth-child(3){animation-delay:.3s}
+#music-btn.playing .eq i:nth-child(4){animation-delay:.45s}
+#music-btn.playing .eq i:nth-child(5){animation-delay:.1s}
+@keyframes eq{0%,100%{height:30%}50%{height:95%}}
+#music-btn.paused .eq i{height:22%}
+
+/* ===== Banner consentimiento ===== */
+#consent{
+  position:fixed;left:16px;right:16px;bottom:16px;z-index:900;max-width:520px;
+  background:rgba(12,10,20,.96);backdrop-filter:blur(16px);border:1px solid rgba(168,85,247,.3);
+  border-radius:20px;padding:24px;color:#cbd5e1;box-shadow:0 30px 70px rgba(0,0,0,.5);
+  transform:translateY(140%);transition:transform .6s cubic-bezier(.2,.8,.2,1);
+}
+#consent.show{transform:none}
+#consent h4{color:#fff;font-size:15px;display:flex;align-items:center;gap:9px;margin-bottom:10px}
+#consent h4::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--purple);transform:rotate(45deg)}
+#consent p{font-size:12.5px;line-height:1.7;color:rgba(203,213,225,.8)}
+#consent .cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+#consent .ok{flex:1;background:linear-gradient(120deg,var(--purple-deep),var(--purple));color:#fff;font-weight:800;font-size:13px;padding:13px 20px;border-radius:12px}
+#consent .no{flex:1;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.75);font-weight:700;font-size:13px;padding:13px 20px;border-radius:12px}
+
+@media(max-width:640px){
+  #hero .content{padding:0 22px}
+  #hero .scroll-progress{right:14px}
+  #hero .frame-counter{right:14px;bottom:14px;font-size:11.5px}
+  .qz-head{padding:26px 22px}.qz-body{padding:26px 22px}
+  .tiers{grid-template-columns:1fr 1fr 1fr}
+  .svc{padding:50px 0}
+}
+</style>
+</head>
+<body class="locked">
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<!-- Preloader -->
+<div id="preloader">
+  <img class="pl-logo" src="img/logo.png" alt="InteliTech">
+  <div class="pl-pct num"><span id="pl-num">0</span>%</div>
+  <div class="pl-bar"><i id="pl-bar"></i></div>
+  <div class="pl-hint" id="pl-hint">0 / 192 frames</div>
+  <div class="pl-brand">InteliTech · Alta Gama</div>
+</div>
+
+<!-- Navbar -->
+<header id="nav">
+  <a class="brand" href="#inicio" aria-label="InteliTech">
+    <img class="logo-light" src="img/logo.png" alt="InteliTech">
+    <img class="logo-dark" src="img/logo-dark.png" alt="InteliTech">
+  </a>
+  <nav class="links" aria-label="Principal">
+    <a href="#inicio">Inicio</a>
+    <a href="#cotizador">Cotizador</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#filosofia">Filosofía</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <a class="cta" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20quiero%20cotizar%20una%20reparaci%C3%B3n." target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.8 1.4-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .2 0 .8-.1 1.2z"/></svg>
+    Cotizar por WhatsApp
+  </a>
+  <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</header>
+
+<!-- Menú móvil -->
+<div id="mobile-menu">
+  <a href="#inicio" style="transition-delay:.05s">Inicio</a>
+  <a href="#cotizador" style="transition-delay:.1s">Cotizador</a>
+  <a href="#servicios" style="transition-delay:.15s">Servicios</a>
+  <a href="#filosofia" style="transition-delay:.2s">Filosofía</a>
+  <a href="#contacto" style="transition-delay:.25s">Contacto</a>
+  <a class="m-cta" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20quiero%20cotizar%20una%20reparaci%C3%B3n." target="_blank" rel="noopener noreferrer" style="transition-delay:.3s">Cotizar por WhatsApp</a>
+</div>
+
+<main>
+
+<!-- Hero / Portada -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="vignette"></div>
+  <div class="content">
+    <span class="eyebrow">InteliTech · Servicio Técnico de Precisión</span>
+    <h1>Tu tecnología.<br><em>Como nueva.</em></h1>
+    <p class="tagline">Reparación de alta gama para celulares, notebooks, consolas y Smart TV. Repuestos originales, garantía escrita hasta 12 meses y entrega el mismo día.</p>
+    <div class="ctas">
+      <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20quisiera%20cotizar%20la%20reparaci%C3%B3n%20de%20mi%20equipo." target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.8 1.4-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .2 0 .8-.1 1.2z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#cotizador">Cotizar mi reparación</a>
+    </div>
+    <div class="trust">
+      <span><i></i>Garantía escrita 6 a 12 meses</span>
+      <span><i></i>Diagnóstico express gratuito</span>
+      <span><i></i>4.9 / 5.0 · +5.000 clientes</span>
+    </div>
+  </div>
+  <div class="scroll-hint" id="scroll-hint"><span>Desliza</span><span class="line"></span></div>
+  <div class="frame-counter"><b id="frame-now">0001</b> / <span id="frame-total">0192</span></div>
+  <div class="scroll-progress"><i id="scr-progress"></i></div>
+</section>
+
+<!-- Cotizador -->
+<section id="cotizador">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow">Cotizador Inteligente</span>
+      <h2 class="sec-title">¿Qué te pasa,<br>qué te cotizamos?</h2>
+      <p class="sec-sub">Elige tu equipo, cuéntanos la falla y obtén al instante un valor estimado. Si te acomoda, envías los datos y te respondemos en menos de 5 minutos por WhatsApp.</p>
+    </div>
+    <div class="qz-card" data-reveal>
+      <div class="qz-head">
+        <div>
+          <h3>Cotización <span>instantánea</span></h3>
+          <p>Valor estimado en pesos chilenos y dólares referenciales</p>
+        </div>
+        <span class="qz-step">01 · Elige equipo&nbsp;&nbsp;→&nbsp;&nbsp;02 · Falla&nbsp;&nbsp;→&nbsp;&nbsp;03 · Nivel&nbsp;&nbsp;→&nbsp;&nbsp;04 · Envía</span>
+      </div>
+      <div class="qz-body">
+        <div>
+          <div class="qz-label"><i></i>1 · Tipo de equipo</div>
+          <div class="chips" id="device-chips">
+            <button class="chip active" data-device="iphone">iPhone</button>
+            <button class="chip" data-device="android">Samsung / Android</button>
+            <button class="chip" data-device="notebook">Notebook</button>
+            <button class="chip" data-device="consola">Consola</button>
+            <button class="chip" data-device="tv">Smart TV</button>
+            <button class="chip" data-device="empresa">Empresa / Corporativo</button>
+          </div>
+          <div class="qz-field">
+            <div class="qz-label"><i></i>2 · Falla o servicio</div>
+            <select class="qz-select" id="fault-select"></select>
+          </div>
+          <div class="qz-field">
+            <div class="qz-label"><i></i>3 · Nivel de servicio</div>
+            <div class="tiers">
+              <button class="tier active" data-tier="estandar">
+                <b>Estándar</b><small>Repuesto certificado</small>
+              </button>
+              <button class="tier" data-tier="premium">
+                <b>Premium</b><small>Original + prioridad</small>
+              </button>
+              <button class="tier" data-tier="expres">
+                <b>Exprés</b><small>Entrega el mismo día</small>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="qz-panel">
+          <div class="qz-total">
+            <div class="lbl">Valor estimado</div>
+            <div class="clp num"><span id="q-clp">$129.000</span> CLP</div>
+            <div class="usd">≈ USD <span id="q-usd">3.400</span> (referencial, $38.000/USD)</div>
+          </div>
+          <div>
+            <div class="qz-label" style="color:rgba(255,255,255,.55)"><i></i>4 · Envíanos tu cotización</div>
+            <div class="qz-form">
+              <input type="text" id="q-name" placeholder="Tu nombre" autocomplete="name">
+              <input type="tel" id="q-phone" placeholder="Tu WhatsApp (+56 9 ...)" autocomplete="tel">
+              <button class="qz-submit" id="q-send" type="button">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.8 1.4-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .2 0 .8-.1 1.2z"/></svg>
+                Enviar cotización por WhatsApp
+              </button>
+            </div>
+          </div>
+          <p class="qz-note">Valores referenciales — el presupuesto final se confirma tras el diagnóstico. Diagnóstico inicial sin costo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filosofía -->
+<section id="filosofia">
+  <div class="wrap">
+    <div class="mani-line" data-mani>Alta gama.<br><em>Repuestos originales.</em></div>
+    <div class="mani-line" data-mani>Garantía escrita<br>hasta <span class="accent">12 meses.</span></div>
+    <div class="mani-line" data-mani>Entrega <em>el mismo día</em><br>si tu equipo lo permite.</div>
+    <div class="mani-line" data-mani>Tu equipo revive.<br><em>Como nuevo.</em></div>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow">Especialidades</span>
+      <h2 class="sec-title">Un laboratorio,<br>cinco especialidades.</h2>
+      <p class="sec-sub">Trabajamos con microscopía, micro-soldadura y repuestos probados. Cada equipo pasa por diagnóstico técnico antes de tocar un tornillo.</p>
+    </div>
+
+    <article class="svc" data-reveal>
+      <div class="svc-text">
+        <div class="svc-num">01 · CELULARES &amp; TABLETS</div>
+        <h3>Pantallas, baterías y <span>micro-soldadura</span></h3>
+        <p>Especialistas en iPhone, Samsung, Xiaomi y más. Cambio de pantallas OLED/Super Retina con calibración original, baterías de alta densidad con salud 100% y reparación de placas a nivel de chip.</p>
+        <ul>
+          <li>Cambio de pantalla / cristal con calibración táctil</li>
+          <li>Baterías originales y certificadas, ciclo cero</li>
+          <li>Puertos de carga, cámaras y fallas por humedad</li>
+          <li>Micro-soldadura BGA en placa base</li>
+        </ul>
+        <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20necesito%20consultar%20por%20reparaci%C3%B3n%20de%20Celulares%20%2F%20Tablets." target="_blank" rel="noopener noreferrer">Cotizar mi celular</a>
+      </div>
+      <div class="svc-media"><span class="badge"><i>✦</i> Laboratorio ESD</span><img src="frame movil/frame_0020.jpg" alt="Reparación de celular InteliTech" loading="lazy"></div>
+    </article>
+
+    <article class="svc" data-reveal>
+      <div class="svc-text">
+        <div class="svc-num">02 · NOTEBOOKS &amp; MACBOOKS</div>
+        <h3>Ingeniería de <span>placas madre</span></h3>
+        <p>Mantenimientos térmicos de alto rendimiento, micro-soldadura en placas, pantallas Retina y ampliaciones de SSD y RAM con clonación sin pérdida de datos.</p>
+        <ul>
+          <li>Mantenimiento térmico gamer / pro (Kryonaut)</li>
+          <li>Reparación de placa madre a nivel de chip</li>
+          <li>Pantallas LED / OLED / Retina</li>
+          <li>SSD NVMe, RAM y clonación de discos</li>
+        </ul>
+        <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20necesito%20asistencia%20t%C3%A9cnica%20para%20mi%20Notebook%20%2F%20MacBook." target="_blank" rel="noopener noreferrer">Cotizar mi notebook</a>
+      </div>
+      <div class="svc-media"><span class="badge"><i>✦</i> Micro-soldadura</span><img src="frame movil/frame_0060.jpg" alt="Reparación de notebook InteliTech" loading="lazy"></div>
+    </article>
+
+    <article class="svc" data-reveal>
+      <div class="svc-text">
+        <div class="svc-num">03 · CONSOLAS &amp; GAMING</div>
+        <h3>PS5, Xbox y Switch <span>como en fábrica</span></h3>
+        <p>Especialistas en PlayStation 5 Pro / Slim, PS4, Xbox Series X|S y Nintendo Switch. Puertos HDMI, metal líquido original, joysticks Hall Effect antideriva y más.</p>
+        <ul>
+          <li>Puertos HDMI 2.1 con micro-soldadura</li>
+          <li>Sobrecalentamiento y metal líquido original</li>
+          <li>Drift de joysticks → Hall Effect de por vida</li>
+          <li>Consolas que no encienden o se apagan</li>
+        </ul>
+        <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20necesito%20servicio%20t%C3%A9cnico%20para%20mi%20consola%20de%20videojuegos%20%2F%20control." target="_blank" rel="noopener noreferrer">Cotizar mi consola</a>
+      </div>
+      <div class="svc-media"><span class="badge"><i>✦</i> Gaming</span><img src="frame movil/frame_0100.jpg" alt="Reparación de consola InteliTech" loading="lazy"></div>
+    </article>
+
+    <article class="svc" data-reveal>
+      <div class="svc-text">
+        <div class="svc-num">04 · SMART TV &amp; AUDIO</div>
+        <h3>Pantallas grandes, <span>soluciones grandes</span></h3>
+        <p>Reparamos tiras LED de retroiluminación, fuentes de poder, tarjetas mainboard y puertos HDMI de Samsung, LG, Sony y TCL. Audio de alta fidelidad incluido.</p>
+        <ul>
+          <li>Sonido sin imagen → tiras LED backlight</li>
+          <li>No enciende / standby parpadea → fuente</li>
+          <li>Puertos HDMI dañados y Smart TV pegado en logo</li>
+          <li>Re-programación de firmware oficial</li>
+        </ul>
+        <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20quisiera%20consultar%20por%20diagn%C3%B3stico%20de%20Televisor%20%2F%20Audio." target="_blank" rel="noopener noreferrer">Cotizar mi TV</a>
+      </div>
+      <div class="svc-media"><span class="badge"><i>✦</i> Laboratorio TV</span><img src="frame movil/frame_0140.jpg" alt="Reparación de Smart TV InteliTech" loading="lazy"></div>
+    </article>
+
+    <article class="svc" data-reveal>
+      <div class="svc-text">
+        <div class="svc-num">05 · CORPORATIVO &amp; EMPRESAS</div>
+        <h3>Servicio técnico <span>para tu empresa</span></h3>
+        <p>Mantenimiento y reparación de parques tecnológicos: notebooks de flota, equipos de oficina, micro-electrónica y repuestos probados. Convenios con SLA y reportes por equipo.</p>
+        <ul>
+          <li>Flotas corporativas con despacho y retiro</li>
+          <li>Mantención preventiva programada</li>
+          <li>Reportes técnicos por equipo y facturación SII</li>
+          <li>Venta de repuestos garantizados</li>
+        </ul>
+        <a class="btn btn-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20represento%20a%20una%20empresa%20y%20necesito%20un%20plan%20de%20servicio%20t%C3%A9cnico%20corporativo." target="_blank" rel="noopener noreferrer">Hablar con ejecutivo</a>
+      </div>
+      <div class="svc-media"><span class="badge"><i>✦</i> Corporate SLA</span><img src="frame movil/frame_0180.jpg" alt="Servicio técnico corporativo InteliTech" loading="lazy"></div>
+    </article>
+  </div>
+</section>
+
+<!-- Stats -->
+<section id="stats">
+  <div class="wrap">
+    <div class="sec-head" data-reveal style="margin-bottom:44px">
+      <span class="sec-eyebrow">Números que respaldan</span>
+      <h2 class="sec-title">Precisión medible,<br>resultados reales.</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat" data-reveal><div class="n num"><em data-count="5000" data-prefix="+">0</em></div><div class="l">Equipos reparados</div><div class="d">Celulares, notebooks, consolas y TVs</div></div>
+      <div class="stat" data-reveal><div class="n num"><em data-count="98">0</em>%</div><div class="l">Satisfacción</div><div class="d">4.9/5.0 en Google por nuestros clientes</div></div>
+      <div class="stat" data-reveal><div class="n num"><em>GRATIS</em></div><div class="l">Diagnóstico</div><div class="d">Evaluación previa sin ningún compromiso</div></div>
+      <div class="stat" data-reveal><div class="n num"><em>100</em>%</div><div class="l">A domicilio</div><div class="d">Retiro y entrega en Santiago</div></div>
+      <div class="stat" data-reveal><div class="n num"><em>6–12M</em></div><div class="l">Garantía</div><div class="d">Escrita, en cada orden de trabajo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Por qué elegirnos -->
+<section id="porque">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow">Por qué elegirnos</span>
+      <h2 class="sec-title">Promesas que se firman.</h2>
+      <p class="sec-sub">Cada reparación sale con orden de servicio, repuestos probados y una garantía que puedes leer.</p>
+    </div>
+    <div class="tiers-grid">
+      <div class="tier-card" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h4>Repuestos originales</h4>
+        <p>Pantallas, baterías y componentes importados y probados en laboratorio. Compatibles certificados cuando corresponda.</p>
+        <span class="tag">Calidad garantizada</span>
+      </div>
+      <div class="tier-card" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h4>Garantía escrita hasta 12 meses</h4>
+        <p>Pantallas y baterías con 6 a 12 meses según categoría. Micro-soldadura con respaldo de 3 a 6 meses. Todo por escrito.</p>
+        <span class="tag">Orden de servicio</span>
+      </div>
+      <div class="tier-card" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h4>Entrega el mismo día</h4>
+        <p>La mayoría de las reparaciones se resuelven en horas. Si el repuesto está en stock, tu equipo vuelve el mismo día.</p>
+        <span class="tag">Rapidez premium</span>
+      </div>
+      <div class="tier-card" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h4>Servicio corporativo</h4>
+        <p>Convenios con empresas, flotas, SLA, reportes técnicos y facturación electrónica SII.</p>
+        <span class="tag">B2B con SLA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Canales oficiales -->
+<section id="canales">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow">Canales oficiales</span>
+      <h2 class="sec-title">Habla directo con el laboratorio.</h2>
+      <p class="sec-sub">Atención humana, sin bots: te responde un técnico real en minutos.</p>
+    </div>
+    <div class="ch-grid">
+      <a class="ch-card" data-reveal href="https://wa.me/56948922008" target="_blank" rel="noopener noreferrer">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.8 1.4-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .2 0 .8-.1 1.2z"/></svg></span>
+        <span><b>WhatsApp directo</b><span>+56 9 4892 2008 · respuesta en minutos</span></span>
+      </a>
+      <a class="ch-card" data-reveal href="mailto:contacto@intelitech.cl">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm16 4.2L12 13 4 8.2V18h16V8.2z"/></svg></span>
+        <span><b>Correo</b><span>contacto@intelitech.cl</span></span>
+      </a>
+      <a class="ch-card" data-reveal href="https://intelitech.cl" target="_blank" rel="noopener noreferrer">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+        <span><b>Sitio web oficial</b><span>intelitech.cl</span></span>
+      </a>
+    </div>
+    <p class="ch-note">Horario real · Lun–Vie 09:00–19:00 hrs · Sáb 10:00–14:00 hrs · Santiago de Chile</p>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow">Contacto</span>
+      <h2 class="sec-title">Llega tu equipo,<br>vuelve como nuevo.</h2>
+    </div>
+    <div class="ct-grid">
+      <div data-reveal>
+        <div class="ct-item">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5z"/></svg></span>
+          <div><b>Ubicación</b><p>Av. Providencia 2237, Oficina 402<br>Providencia, Santiago de Chile</p></div>
+        </div>
+        <div class="ct-item">
+          <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></span>
+          <div><b>WhatsApp directo</b><a href="https://wa.me/56948922008" target="_blank" rel="noopener noreferrer">+56 9 4892 2008 → escribir ahora</a></div>
+        </div>
+        <div class="ct-item">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <div><b>Horario</b><p>Lunes a Viernes · 09:00 – 19:00 hrs<br>Sábados · 10:00 – 14:00 hrs</p></div>
+        </div>
+        <div class="ct-item">
+          <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>
+          <div><b>Web y correo</b><p><a href="https://intelitech.cl" target="_blank" rel="noopener noreferrer">intelitech.cl</a> · <a href="mailto:contacto@intelitech.cl">contacto@intelitech.cl</a></p></div>
+        </div>
+      </div>
+      <form class="ct-form" data-reveal id="ct-form">
+        <input type="text" id="ct-name" placeholder="Tu nombre" required>
+        <input type="tel" id="ct-phone" placeholder="Tu WhatsApp (+56 9 ...)" required>
+        <textarea id="ct-msg" placeholder="Cuéntanos qué equipo tienes y qué le pasa..." required></textarea>
+        <button class="qz-submit" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="img/logo.png" alt="InteliTech">
+        <h4>InteliTech</h4>
+        <p>Servicio Técnico Especializado de Alta Gama. Reparación de precisión en Santiago de Chile: celulares, notebooks, consolas, Smart TV y corporativo.</p>
+        <p class="ft-music">Música de fondo: "Inspired" — Kevin MacLeod (incompetech.com) · Licencia CC BY 4.0 · <a href="https://incompetech.com" target="_blank" rel="noopener noreferrer">incompetech.com</a></p>
+      </div>
+      <div class="ft-col">
+        <h5>Especialidades</h5>
+        <a href="#servicios">Celulares &amp; Tablets</a>
+        <a href="#servicios">Notebooks &amp; MacBooks</a>
+        <a href="#servicios">Consolas PS5 / Xbox / Switch</a>
+        <a href="#servicios">Smart TV &amp; Audio</a>
+        <a href="#servicios">Corporativo &amp; Empresas</a>
+      </div>
+      <div class="ft-col">
+        <h5>Contacto &amp; Legal</h5>
+        <a href="https://wa.me/56948922008" target="_blank" rel="noopener noreferrer">WhatsApp: +56 9 4892 2008</a>
+        <a href="mailto:contacto@intelitech.cl">contacto@intelitech.cl</a>
+        <a href="https://intelitech.cl/#/garantia" target="_blank" rel="noopener noreferrer">Política de Garantía</a>
+        <a href="https://intelitech.cl/#/terminos-condiciones" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
+        <a href="https://intelitech.cl/#/politica-privacidad" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span id="year">2026</span> InteliTech Chile SpA · Todos los derechos reservados · RUT 77.892.341-K</span>
+      <span class="legal"><a href="#inicio">Inicio</a><a href="#cotizador">Cotizador</a><a href="#contacto">Contacto</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Flotantes -->
+<a id="wa-fab" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp InteliTech">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm5.5 14.1c-.2.7-1.3 1.3-1.8 1.4-.5.1-1 .2-3.4-.7-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.3.6.4 0 .2 0 .8-.1 1.2z"/></svg>
+</a>
+<button id="music-btn" class="paused" aria-label="Reproducir música">
+  <span class="eq"><i></i><i></i><i></i><i></i><i></i></span>
+</button>
+
+<!-- Banner de consentimiento -->
+<div id="consent">
+  <h4>Privacidad &amp; Cookies</h4>
+  <p>Usamos cookies esenciales y música de fondo para que vivas la experiencia completa. Si aceptas, iniciamos la música (volumen suave) y confirmas nuestro aviso de privacidad. Puedes controlarla con el botón 🎵 en pantalla.</p>
+  <div class="cta">
+    <button class="ok" id="consent-ok">Aceptar y escuchar</button>
+    <button class="no" id="consent-no">Solo esenciales</button>
+  </div>
+</div>
+
+<audio id="bg-music" src="audio/bg-music.mp3" loop preload="none"></audio>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>
