@@ -1,0 +1,15 @@
+{
+  "name": "InteliTech | Servicio Técnico de Alta Gama",
+  "short_name": "InteliTech",
+  "description": "Reparación profesional de celulares, notebooks, consolas y Smart TVs en Santiago de Chile. Repuestos originales, garantía escrita y entrega el mismo día.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#A855F7",
+  "lang": "es",
+  "icons": [
+    { "src": "img/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

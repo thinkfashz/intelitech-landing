@@ -8,6 +8,11 @@
 <meta name="keywords" content="reparacion celulares, cambio de pantalla, servicio tecnico ps5, reparacion notebook, servicio tecnico tv, intelitech, reparacion iphone, reparacion samsung, servicio tecnico santiago">
 <meta name="theme-color" content="#A855F7">
 <meta name="robots" content="index, follow">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="InteliTech">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -549,6 +554,24 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
   #nav.scrolled .logo-dark{opacity:0}
 }
 
+/* ===== Móvil: centrado tipo app nativa en todo el contenido ===== */
+@media(max-width:1023px){
+  .sec-head{text-align:center;margin-left:auto;margin-right:auto}
+  .sec-sub{margin-left:auto;margin-right:auto}
+  .sec-rule{margin-left:auto;margin-right:auto}
+  .mani-line{text-align:center}
+  .svc-text{text-align:center}
+  .svc ul{justify-items:center}
+  .tier-card{text-align:center}
+  .tier-card .ico{margin:0 auto 20px}
+  .qz-head{justify-content:center;text-align:center}
+  .chips{justify-content:center}
+  .qz-label{justify-content:center}
+  .ct-item{justify-content:center;text-align:center}
+  #cta-band .wrap{justify-content:center;text-align:center}
+  .ch-note{text-align:center}
+}
+
 /* ===== Móvil: footer estilo app nativa ===== */
 @media(max-width:767px){
   footer{
@@ -578,7 +601,9 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
 }
 
 @media(max-width:640px){
-  #hero .content{padding:0 22px}
+  #hero .content{padding:0 18px}
+  #hero h1{font-size:clamp(34px,9.5vw,52px);padding:16px 22px;border-radius:24px}
+  #hero .tagline{padding:13px 18px;font-size:15.5px}
   #hero .scroll-progress{right:14px}
   #hero .frame-counter{right:14px;bottom:14px;font-size:11.5px}
   .qz-head{padding:26px 22px}.qz-body{padding:26px 22px}
