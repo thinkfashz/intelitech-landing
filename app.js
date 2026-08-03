@@ -1,4 +1,4 @@
-/* ===== InteliTech — app.js ===== */
+/* ===== InteliTech — app.js v2 ===== */
 (function () {
   'use strict';
 
@@ -17,17 +17,12 @@
   /* ===== Preload de frames ===== */
   const frames = new Array(FRAME_COUNT).fill(null);
   let loaded = 0;
-  let done = 0;
 
   function preloadFrame(i) {
     if (frames[i]) return Promise.resolve();
     return new Promise((resolve) => {
       const img = new Image();
-      img.onload = () => {
-        frames[i] = img;
-        loaded++;
-        resolve();
-      };
+      img.onload = () => { frames[i] = img; loaded++; resolve(); };
       img.onerror = () => resolve();
       img.src = FRAME_DIR + pad(i + 1) + '.jpg';
     });
@@ -64,6 +59,8 @@
   const FRAME_W = 720, FRAME_H = 1280;
   let dpr = 1;
   let currentFrame = 0;
+  let pendingFrame = 0;
+  let drawScheduled = false;
 
   function resizeCanvas() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -79,9 +76,22 @@
     const cw = canvas.width, ch = canvas.height;
     const scale = Math.max(cw / FRAME_W, ch / FRAME_H);
     const w = FRAME_W * scale, h = FRAME_H * scale;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
     currentFrame = n;
+  }
+
+  function requestDraw(n) {
+    pendingFrame = n;
+    if (drawScheduled) return;
+    drawScheduled = true;
+    requestAnimationFrame(() => {
+      drawScheduled = false;
+      if (pendingFrame && pendingFrame !== currentFrame) drawFrame(pendingFrame);
+      pendingFrame = 0;
+    });
   }
 
   function updateCounter(n) {
@@ -169,13 +179,13 @@
       scrub: true,
       snap: {
         snapTo: 1 / (FRAME_COUNT - 1),
-        duration: { min: 0.08, max: 0.2 },
+        duration: { min: 0.06, max: 0.16 },
         ease: 'power1.inOut'
       },
       onUpdate: (self) => {
         const f = Math.max(1, Math.min(FRAME_COUNT, Math.round(self.progress * (FRAME_COUNT - 1)) + 1));
         if (f !== currentFrame) {
-          drawFrame(f);
+          requestDraw(f);
           updateCounter(f);
         }
         $('#scr-progress').style.height = (self.progress * 100).toFixed(1) + '%';
@@ -253,17 +263,23 @@
     });
   }
 
-  /* ===== Navbar ===== */
+  /* ===== Navbar / scroll state ===== */
   const nav = $('#nav');
+  const toTop = $('#to-top');
+
+  function onScrollPos() {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > window.innerHeight * 0.7);
+    toTop.classList.toggle('show', y > window.innerHeight * 1.3);
+  }
+  if (lenis) lenis.on('scroll', onScrollPos);
+  window.addEventListener('scroll', onScrollPos, { passive: true });
+  onScrollPos();
+
+  toTop.addEventListener('click', () => smoothTo(0));
+
   const burger = $('#burger');
   const mobileMenu = $('#mobile-menu');
-  const hero = $('#hero');
-
-  function onScrollNav() {
-    nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
-  }
-  window.addEventListener('scroll', onScrollNav, { passive: true });
-  onScrollNav();
 
   function closeMenu() {
     mobileMenu.classList.remove('open');
@@ -283,6 +299,32 @@
   });
   $$('#mobile-menu a').forEach((a) => a.addEventListener('click', closeMenu));
 
+  /* ===== Anclas suaves (Lenis) ===== */
+  function smoothTo(target) {
+    if (target === 0) {
+      if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (lenis) {
+      lenis.scrollTo(target, { offset: -72, duration: 1.25 });
+    } else {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function initAnchors() {
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = href === '#inicio' ? 0 : document.querySelector(href);
+        if (target === null) return;
+        e.preventDefault();
+        closeMenu();
+        smoothTo(target);
+      });
+    });
+  }
+
   /* ===== Reveals ===== */
   function initReveals() {
     $$('[data-reveal]').forEach((el) => {
@@ -293,6 +335,34 @@
           scrollTrigger: { trigger: el, start: 'top 84%' }
         }
       );
+    });
+  }
+
+  /* ===== Servicios: reveals direccionales (RTL en móvil) ===== */
+  function initSvcReveals() {
+    const mm = gsap.matchMedia();
+    mm.add('(max-width: 959px)', () => {
+      $$('.svc').forEach((el) => {
+        const text = el.querySelector('.svc-text');
+        const media = el.querySelector('.svc-media');
+        if (!text || !media) return;
+        gsap.fromTo(text, { opacity: 0, x: 96 }, {
+          opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 82%' }
+        });
+        gsap.fromTo(media, { opacity: 0, x: -96 }, {
+          opacity: 1, x: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 82%' }
+        });
+      });
+    });
+    mm.add('(min-width: 960px)', () => {
+      $$('.svc').forEach((el) => {
+        gsap.fromTo(el, { opacity: 0, y: 48 }, {
+          opacity: 1, y: 0, duration: 1.05, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 84%' }
+        });
+      });
     });
   }
 
@@ -336,75 +406,106 @@
     });
   }
 
-  /* ===== Cotizador ===== */
+  /* ===== Cotizador 2026 ===== */
   const PRICES = {
     iphone: {
       label: 'iPhone',
+      models: [
+        { id: 'x', label: 'iPhone X · XS · XR', mult: 1, screen: 85000 },
+        { id: '11', label: 'iPhone 11 · 11 Pro', mult: 1.15, screen: 90000 },
+        { id: '12', label: 'iPhone 12 · 12 Pro', mult: 1.35, screen: 129000 },
+        { id: '13', label: 'iPhone 13 · 13 Pro', mult: 1.5, screen: 149000 },
+        { id: '14', label: 'iPhone 14 · 14 Pro', mult: 1.65, screen: 169000 },
+        { id: '15', label: 'iPhone 15 · 15 Pro', mult: 2.0, screen: 319000 },
+        { id: '16', label: 'iPhone 16 · 16 Pro', mult: 2.3, screen: 359000 }
+      ],
       faults: {
-        pantalla: { label: 'Cambio de pantalla / cristal', price: 149000 },
-        bateria: { label: 'Cambio de batería', price: 59900 },
-        carga: { label: 'Puerto de carga / no carga', price: 49900 },
-        noenciende: { label: 'No enciende', price: 89900 },
-        camara: { label: 'Cámara / vidrio de cámara', price: 79900 },
-        software: { label: 'Software / no arranca iOS', price: 29900 },
-        repuestos: { label: 'Otro repuesto / diagnóstico', price: 49900 }
+        pantalla: { label: 'Cambio de pantalla', base: 85000 },
+        bateria: { label: 'Cambio de batería', base: 55000 },
+        carga: { label: 'Puerto de carga / no carga', base: 45000 },
+        noenciende: { label: 'No enciende', base: 80000 },
+        camara: { label: 'Cámara / vidrio de cámara', base: 70000 },
+        software: { label: 'Software / no arranca iOS', base: 25000 },
+        otros: { label: 'Otro repuesto / diagnóstico', base: 30000 }
       }
     },
     android: {
       label: 'Samsung / Android',
+      models: [
+        { id: 'media', label: 'Gama media · A / M / Redmi', mult: 1, screen: 65000 },
+        { id: 'alta', label: 'Gama alta · S / Note / flagship', mult: 1.4, screen: 149000 },
+        { id: 'fold', label: 'Plegable · Z Fold / Z Flip', mult: 1.9, screen: 380000 }
+      ],
       faults: {
-        pantalla: { label: 'Cambio de pantalla / cristal', price: 89900 },
-        bateria: { label: 'Cambio de batería', price: 49900 },
-        carga: { label: 'Puerto de carga / no carga', price: 39900 },
-        noenciende: { label: 'No enciende', price: 69900 },
-        camara: { label: 'Cámara / vidrio de cámara', price: 59900 },
-        software: { label: 'Software / flasheo', price: 24900 },
-        repuestos: { label: 'Otro repuesto / diagnóstico', price: 39900 }
+        pantalla: { label: 'Cambio de pantalla', base: 65000 },
+        bateria: { label: 'Cambio de batería', base: 45000 },
+        carga: { label: 'Puerto de carga / no carga', base: 35000 },
+        noenciende: { label: 'No enciende', base: 60000 },
+        camara: { label: 'Cámara / vidrio de cámara', base: 50000 },
+        software: { label: 'Software / flasheo', base: 20000 },
+        otros: { label: 'Otro repuesto / diagnóstico', base: 30000 }
       }
     },
     notebook: {
       label: 'Notebook',
+      models: [
+        { id: 'std', label: 'Estándar / oficina', mult: 1 },
+        { id: 'gamer', label: 'Gamer / pro (GPU dedicada)', mult: 1.35 },
+        { id: 'mac', label: 'MacBook / Apple Silicon', mult: 1.55 }
+      ],
       faults: {
-        mantenimiento: { label: 'Mantenimiento térmico / limpieza', price: 59900 },
-        placa: { label: 'Placa madre / micro-soldadura', price: 129000 },
-        pantalla: { label: 'Pantalla / flex / bisagras', price: 129000 },
-        bateria: { label: 'Batería / cargador / DC', price: 79900 },
-        ssd: { label: 'SSD / RAM / clonación', price: 69900 },
-        noenciende: { label: 'No enciende', price: 99900 },
-        software: { label: 'Software / formateo', price: 39900 }
+        mantenimiento: { label: 'Mantenimiento térmico / limpieza', base: 59000 },
+        placa: { label: 'Placa madre / micro-soldadura', base: 129000 },
+        pantalla: { label: 'Pantalla / flex / bisagras', base: 129000 },
+        bateria: { label: 'Batería / cargador / DC', base: 79000 },
+        ssd: { label: 'SSD / RAM / clonación', base: 69000 },
+        noenciende: { label: 'No enciende', base: 99000 },
+        software: { label: 'Software / formateo', base: 39000 }
       }
     },
     consola: {
       label: 'Consola',
+      models: [
+        { id: 'ps5', label: 'PS5 · Slim · Pro', mult: 1 },
+        { id: 'ps4', label: 'PS4 · PS4 Pro', mult: 0.75 },
+        { id: 'xbox', label: 'Xbox Series X|S · One', mult: 1 },
+        { id: 'switch', label: 'Nintendo Switch · OLED', mult: 0.7 }
+      ],
       faults: {
-        hdmi: { label: 'Puerto HDMI / sin señal', price: 79900 },
-        metal: { label: 'Sobrecalentamiento / metal líquido', price: 59900 },
-        drift: { label: 'Drift de joysticks / Hall Effect', price: 49900 },
-        noenciende: { label: 'No enciende / apagones', price: 99900 },
-        limpieza: { label: 'Limpieza y mantención', price: 39900 },
-        software: { label: 'Software / actualización', price: 29900 },
-        repuestos: { label: 'Otro repuesto / diagnóstico', price: 49900 }
+        hdmi: { label: 'Puerto HDMI / sin señal', base: 59000 },
+        metal: { label: 'Sobrecalentamiento / metal líquido', base: 59000 },
+        drift: { label: 'Drift de joysticks / Hall Effect', base: 49000 },
+        noenciende: { label: 'No enciende / apagones', base: 99000 },
+        limpieza: { label: 'Limpieza y mantención', base: 39000 },
+        software: { label: 'Software / actualización', base: 29000 },
+        otros: { label: 'Otro repuesto / diagnóstico', base: 40000 }
       }
     },
     tv: {
       label: 'Smart TV',
+      models: [
+        { id: 's', label: '32" – 50"', mult: 0.9 },
+        { id: 'm', label: '50" – 65"', mult: 1 },
+        { id: 'l', label: '65" en adelante', mult: 1.3 }
+      ],
       faults: {
-        backlight: { label: 'Tiene sonido pero no imagen (LED)', price: 89900 },
-        fuente: { label: 'No enciende / fuente', price: 79900 },
-        mainboard: { label: 'Mainboard / placa principal', price: 119000 },
-        hdmi: { label: 'Puertos HDMI dañados', price: 59900 },
-        noenciende: { label: 'Pegado en logo / firmware', price: 49900 },
-        repuestos: { label: 'Otro repuesto / diagnóstico', price: 69900 }
+        backlight: { label: 'Sonido pero no imagen (LED)', base: 49000 },
+        fuente: { label: 'No enciende / fuente de poder', base: 39000 },
+        mainboard: { label: 'Mainboard / placa principal', base: 79000 },
+        hdmi: { label: 'Puertos HDMI dañados', base: 49000 },
+        firmware: { label: 'Pegado en logo / firmware', base: 45000 },
+        otros: { label: 'Otro repuesto / diagnóstico', base: 55000 }
       }
     },
     empresa: {
       label: 'Empresa / Corporativo',
+      models: null,
       faults: {
-        flota: { label: 'Flota corporativa / convenio', price: 0 },
-        preventiva: { label: 'Mantención preventiva', price: 0 },
-        urgencia: { label: 'Soporte urgente / SLA', price: 0 },
-        repuestos: { label: 'Repuestos al por mayor', price: 0 },
-        otros: { label: 'Otro requerimiento', price: 0 }
+        flota: { label: 'Flota corporativa / convenio', base: 0 },
+        preventiva: { label: 'Mantención preventiva', base: 0 },
+        urgencia: { label: 'Soporte urgente / SLA', base: 0 },
+        repuestos: { label: 'Repuestos al por mayor', base: 0 },
+        otros: { label: 'Otro requerimiento', base: 0 }
       }
     }
   };
@@ -417,32 +518,63 @@
 
   let selDevice = 'iphone';
   let selTier = 'estandar';
+  let selModel = null;
 
   function fmtCLP(v) {
     return '$' + Math.round(v).toLocaleString('es-CL');
   }
 
-  function currentPrice() {
-    const dev = PRICES[selDevice];
-    const fault = dev.faults[$('#fault-select').value] || Object.values(dev.faults)[0];
-    const mult = TIERS[selTier].mult;
-    return { base: fault.price, mult };
+  function currentModel(dev) {
+    if (!dev.models || !selModel) return null;
+    return dev.models.find((m) => m.id === selModel.id) || dev.models[0];
+  }
+
+  function faultPrice(dev, fault) {
+    const model = currentModel(dev);
+    if (!model) return fault.base;
+    if (fault.key === 'pantalla' && model.screen) return model.screen;
+    return fault.base * model.mult;
   }
 
   function refreshQuote() {
     const dev = PRICES[selDevice];
-    const fault = dev.faults[$('#fault-select').value] || Object.values(dev.faults)[0];
-    if (selDevice === 'empresa') {
+    const fKey = $('#fault-select').value;
+    const fault = Object.assign({ key: fKey }, dev.faults[fKey] || Object.values(dev.faults)[0]);
+    const tier = TIERS[selTier];
+    const isEmpresa = !dev.models;
+    const detail = $('#q-detail');
+
+    if (isEmpresa) {
       $('#q-clp').textContent = 'A medida';
       $('#q-usd').textContent = 'SLA';
+      detail.innerHTML = '<b>Convenio corporativo</b> · cotización personalizada con SLA, reportes técnicos y facturación SII. Diagnóstico sin costo.';
       return;
     }
-    const mult = TIERS[selTier].mult;
-    const raw = fault.price * mult;
+
+    const raw = faultPrice(dev, fault) * tier.mult;
     const rounded = Math.round(raw / 1000) * 1000;
     const usd = Math.round(rounded / USD_CLP);
+    const model = currentModel(dev);
+    const modelLabel = model ? (model.label.indexOf(dev.label) === 0 ? model.label : dev.label + ' · ' + model.label) : dev.label;
     $('#q-clp').textContent = fmtCLP(rounded);
     $('#q-usd').textContent = usd.toLocaleString('es-CL');
+    detail.innerHTML = '<b>' + modelLabel + '</b><br>' + fault.label + ' · nivel <b>' + tier.label + '</b>';
+  }
+
+  function fillModels() {
+    const dev = PRICES[selDevice];
+    const sel = $('#model-select');
+    const field = $('#model-field');
+    if (!dev.models) {
+      field.classList.add('hidden');
+      selModel = null;
+    } else {
+      field.classList.remove('hidden');
+      sel.innerHTML = dev.models
+        .map((m) => '<option value="' + m.id + '">' + m.label + '</option>')
+        .join('');
+      selModel = dev.models[0];
+    }
   }
 
   function fillFaults() {
@@ -454,23 +586,56 @@
     refreshQuote();
   }
 
-  $('#device-chips').addEventListener('click', (e) => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    selDevice = chip.dataset.device;
-    $$('#device-chips .chip').forEach((c) => c.classList.toggle('active', c === chip));
-    fillFaults();
-  });
+  function setStep(n) {
+    for (let i = 1; i <= 5; i++) {
+      const st = $('#st-' + i);
+      if (st) st.classList.toggle('on', i <= n);
+    }
+  }
 
-  $('#fault-select').addEventListener('change', refreshQuote);
-
-  $$('.tier').forEach((t) => {
-    t.addEventListener('click', () => {
-      selTier = t.dataset.tier;
-      $$('.tier').forEach((x) => x.classList.toggle('active', x === t));
-      refreshQuote();
+  function initCotizador() {
+    $('#device-chips').addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      selDevice = chip.dataset.device;
+      $$('#device-chips .chip').forEach((c) => c.classList.toggle('active', c === chip));
+      fillModels();
+      fillFaults();
+      setStep(3);
     });
-  });
+
+    $('#model-select').addEventListener('change', () => {
+      const dev = PRICES[selDevice];
+      if (dev.models) {
+        selModel = dev.models.find((m) => m.id === $('#model-select').value) || dev.models[0];
+      }
+      refreshQuote();
+      setStep(3);
+    });
+
+    $('#fault-select').addEventListener('change', () => {
+      refreshQuote();
+      setStep(4);
+    });
+
+    $$('.tier').forEach((t) => {
+      t.addEventListener('click', () => {
+        selTier = t.dataset.tier;
+        $$('.tier').forEach((x) => x.classList.toggle('active', x === t));
+        refreshQuote();
+        setStep(4);
+      });
+    });
+
+    const checkStep5 = () => {
+      const ok = $('#q-name').value.trim() && $('#q-phone').value.trim();
+      if (ok) setStep(5);
+    };
+    $('#q-name').addEventListener('input', checkStep5);
+    $('#q-phone').addEventListener('input', checkStep5);
+
+    $('#q-send').addEventListener('click', sendQuote);
+  }
 
   function sendQuote() {
     const name = $('#q-name').value.trim();
@@ -482,15 +647,16 @@
       return;
     }
     const dev = PRICES[selDevice];
-    const fault = dev.faults[$('#fault-select').value];
+    const fKey = $('#fault-select').value;
+    const fault = Object.assign({ key: fKey }, dev.faults[fKey]);
     const tier = TIERS[selTier];
-    const isEmpresa = selDevice === 'empresa';
+    const model = currentModel(dev);
+    const isEmpresa = !dev.models;
     let valueLine;
     if (isEmpresa) {
       valueLine = 'Valor: cotización personalizada (SLA)';
     } else {
-      const raw = fault.price * tier.mult;
-      const rounded = Math.round(raw / 1000) * 1000;
+      const rounded = Math.round((faultPrice(dev, fault) * tier.mult) / 1000) * 1000;
       valueLine = 'Valor estimado: ' + fmtCLP(rounded) + ' CLP (≈ USD ' + Math.round(rounded / USD_CLP).toLocaleString('es-CL') + ')';
     }
     const msg = [
@@ -498,7 +664,7 @@
       '',
       '• Nombre: ' + name,
       '• Teléfono: ' + phone,
-      '• Dispositivo: ' + dev.label,
+      '• Dispositivo: ' + dev.label + (model ? ' · ' + model.label : ''),
       '• Falla: ' + fault.label,
       '• Nivel de servicio: ' + tier.label,
       '• ' + valueLine,
@@ -507,24 +673,25 @@
     ].join('\n');
     window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
   }
-  $('#q-send').addEventListener('click', sendQuote);
 
   /* ===== Formulario contacto ===== */
-  $('#ct-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = $('#ct-name').value.trim();
-    const phone = $('#ct-phone').value.trim();
-    const msg = $('#ct-msg').value.trim();
-    if (!name || !phone || !msg) return;
-    const text = [
-      'Hola InteliTech, mensaje desde la web:',
-      '',
-      '• Nombre: ' + name,
-      '• Teléfono: ' + phone,
-      '• Mensaje: ' + msg
-    ].join('\n');
-    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text), '_blank');
-  });
+  function initContact() {
+    $('#ct-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = $('#ct-name').value.trim();
+      const phone = $('#ct-phone').value.trim();
+      const msg = $('#ct-msg').value.trim();
+      if (!name || !phone || !msg) return;
+      const text = [
+        'Hola InteliTech, mensaje desde la web:',
+        '',
+        '• Nombre: ' + name,
+        '• Teléfono: ' + phone,
+        '• Mensaje: ' + msg
+      ].join('\n');
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text), '_blank');
+    });
+  }
 
   /* ===== Música ===== */
   const audio = $('#bg-music');
@@ -549,17 +716,6 @@
   }
 
   function toggleMusic() {
-    if (!musicAllowed) {
-      if (musicStarted) {
-        audio.pause();
-        musicStarted = false;
-        musicBtn.classList.remove('playing');
-        musicBtn.classList.add('paused');
-      } else {
-        startMusic();
-      }
-      return;
-    }
     if (musicStarted) {
       fadeTo(0, 0.8);
       setTimeout(() => {
@@ -572,10 +728,14 @@
       startMusic();
     }
   }
-  musicBtn.addEventListener('click', toggleMusic);
+
+  function initMusic() {
+    musicBtn.addEventListener('click', toggleMusic);
+  }
 
   /* ===== Consentimiento ===== */
   const consent = $('#consent');
+
   function setConsent(value) {
     try {
       localStorage.setItem('it_consent_v1', JSON.stringify({ accepted: value, at: Date.now() }));
@@ -583,13 +743,10 @@
     consent.classList.remove('show');
     if (value) startMusic();
   }
-  $('#consent-ok').addEventListener('click', () => setConsent(true));
-  $('#consent-no').addEventListener('click', () => setConsent(false));
 
-  let consentDone = false;
-  function maybeShowConsent() {
-    if (consentDone) return;
-    consentDone = true;
+  function initConsent() {
+    $('#consent-ok').addEventListener('click', () => setConsent(true));
+    $('#consent-no').addEventListener('click', () => setConsent(false));
     let saved = null;
     try { saved = JSON.parse(localStorage.getItem('it_consent_v1') || 'null'); } catch (err) {}
     if (saved === null) {
@@ -605,12 +762,23 @@
     initParticles();
     initHeroScrub();
     initReveals();
+    initSvcReveals();
     initManifesto();
     initCounters();
+    fillModels();
     fillFaults();
+    initCotizador();
+    initContact();
+    initAnchors();
+    initMusic();
+    initConsent();
+    setStep(3);
     $('#year').textContent = new Date().getFullYear();
-    maybeShowConsent();
     ScrollTrigger.refresh();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
+    window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
