@@ -260,6 +260,27 @@ section{position:relative;z-index:5}
 .sec-sub{color:#5b6478;font-size:16.5px;line-height:1.75;margin-top:20px;max-width:620px}
 .sec-rule{width:64px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple));margin-top:26px}
 
+/* ===== Dispositivos (galería tras el visor) ===== */
+#dispositivos{padding:110px 0 60px;background:var(--bg)}
+.dev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(min-width:720px){.dev-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.dev-grid{grid-template-columns:repeat(6,1fr)}}
+.dev-card{
+  position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;
+  background:#111;box-shadow:0 18px 44px -22px rgba(15,23,42,.45);
+}
+.dev-card img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.6,.2,1)}
+.dev-card:hover img{transform:scale(1.07)}
+.dev-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.72) 0%,transparent 55%)}
+.dev-card figcaption{position:absolute;left:14px;right:14px;bottom:13px;z-index:2}
+.dev-card b{display:block;font-family:var(--serif);font-size:16.5px;color:#fff;font-weight:500}
+.dev-card span{display:block;margin-top:3px;font-size:10.5px;font-weight:600;color:rgba(255,255,255,.72);letter-spacing:.02em}
+@media(max-width:1023px){
+  #dispositivos{padding:90px 0 46px}
+  .dev-card b{font-size:15px}
+  .dev-card span{font-size:10px}
+}
+
 /* ===== Cotizador ===== */
 #cotizador{padding:120px 0 110px;background:var(--bg)}
 .qz-card{
@@ -441,6 +462,15 @@ select.qz-select{
 
 /* ===== Contacto ===== */
 #contacto{padding:130px 0;background:var(--bg)}
+.ct-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/10;margin-bottom:30px;box-shadow:0 24px 60px -28px rgba(15,23,42,.45)}
+.ct-photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.6,.2,1)}
+.ct-photo:hover img{transform:scale(1.05)}
+.ct-photo .badge{
+  position:absolute;left:14px;bottom:12px;z-index:2;background:rgba(10,10,10,.65);
+  backdrop-filter:blur(10px);color:#fff;font-size:11px;font-weight:700;letter-spacing:.14em;
+  padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+}
+.ct-photo .badge i{color:var(--purple);font-style:normal}
 .ct-grid{display:grid;grid-template-columns:1fr;gap:40px}
 @media(min-width:960px){.ct-grid{grid-template-columns:1fr 1.1fr}}
 .ct-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid #ececf4}
@@ -685,6 +715,44 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
   <div class="frame-counter"><b id="frame-now">0001</b> / <span id="frame-total">0192</span></div>
   <div class="scroll-progress"><i id="scr-progress"></i></div>
   <div class="hero-tag"><i></i>Laboratorio abierto</div>
+</section>
+
+<!-- Dispositivos que reparamos -->
+<section id="dispositivos">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="sec-eyebrow"><i></i>Dispositivos que reparamos</span>
+      <h2 class="sec-title">Tu equipo, <span class="accent-i">sea cual sea.</span></h2>
+      <p class="sec-sub">Del iPhone más nuevo al Smart TV de tu living: trabajamos cada generación y marca con repuestos originales, diagnóstico sin costo y garantía escrita.</p>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="dev-grid">
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/iphone.webp" alt="Reparación de iPhone con herramientas especializadas" loading="lazy">
+        <figcaption><b>iPhone</b><span>Pantallas, baterías y micro-soldadura</span></figcaption>
+      </figure>
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/samsung.webp" alt="Técnico reparando un teléfono Samsung o Android" loading="lazy">
+        <figcaption><b>Samsung / Android</b><span>OLED, flex y módulos originales</span></figcaption>
+      </figure>
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/notebook.webp" alt="Placa madre de notebook en reparación" loading="lazy">
+        <figcaption><b>Notebooks</b><span>Placas madre, térmica y SSD</span></figcaption>
+      </figure>
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/consola.webp" alt="Consola PlayStation abierta para mantenimiento" loading="lazy">
+        <figcaption><b>Consolas</b><span>PS5, Xbox y Switch</span></figcaption>
+      </figure>
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/tv.webp" alt="Smart TV encendido en un living" loading="lazy">
+        <figcaption><b>Smart TV</b><span>Backlight, fuente y mainboard</span></figcaption>
+      </figure>
+      <figure class="dev-card" data-reveal>
+        <img src="img/devices/lab.webp" alt="Técnico con microscopio en laboratorio de micro-soldadura" loading="lazy">
+        <figcaption><b>Micro-soldadura</b><span>Precisión a nivel de chip</span></figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <!-- Cotizador -->
@@ -962,6 +1030,10 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
     </div>
     <div class="ct-grid">
       <div data-reveal>
+        <div class="ct-photo">
+          <img src="img/devices/taller.webp" alt="Técnico InteliTech trabajando en taller" loading="lazy">
+          <span class="badge"><i>✦</i> Diagnóstico express gratuito</span>
+        </div>
         <div class="ct-item">
           <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5z"/></svg></span>
           <div><b>Ubicación</b><p>Av. Providencia 2237, Oficina 402<br>Providencia, Santiago de Chile</p></div>
@@ -1042,6 +1114,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;back
         <a href="mailto:contacto@intelitech.cl">contacto@intelitech.cl</a>
         <a href="https://intelitech.cl" target="_blank" rel="noopener noreferrer">intelitech.cl</a>
         <p class="ft-music">Música de fondo: "Inspired" — Kevin MacLeod (incompetech.com) · Licencia CC BY 4.0 · <a href="https://incompetech.com" target="_blank" rel="noopener noreferrer">incompetech.com</a></p>
+        <p class="ft-music">Fotografías de equipos y laboratorio: Pexels (pexels.com) · Licencia Pexels — libre de uso comercial, sin atribución requerida</p>
       </div>
     </div>
     <a class="ft-wa" href="https://wa.me/56948922008?text=Hola%20InteliTech%2C%20quiero%20cotizar%20una%20reparaci%C3%B3n." target="_blank" rel="noopener noreferrer">
