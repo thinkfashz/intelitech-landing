@@ -74,11 +74,12 @@
     const img = frames[n - 1];
     if (!img || !img.complete) return;
     const cw = canvas.width, ch = canvas.height;
-    const scale = Math.max(cw / FRAME_W, ch / FRAME_H);
+    const scale = Math.min(cw / FRAME_W, ch / FRAME_H);
     const w = FRAME_W * scale, h = FRAME_H * scale;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
-    ctx.clearRect(0, 0, cw, ch);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, cw, ch);
     ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
     currentFrame = n;
   }
