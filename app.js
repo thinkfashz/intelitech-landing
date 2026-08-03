@@ -74,7 +74,7 @@
     const img = frames[n - 1];
     if (!img || !img.complete) return;
     const cw = canvas.width, ch = canvas.height;
-    const scale = Math.min(cw / FRAME_W, ch / FRAME_H);
+    const scale = Math.max(cw / FRAME_W, ch / FRAME_H);
     const w = FRAME_W * scale, h = FRAME_H * scale;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
