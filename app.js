@@ -786,4 +786,20 @@
   } else {
     window.addEventListener('DOMContentLoaded', boot);
   }
+
+  /* ===== Auto-test de scroll (solo con ?autotest=1) ===== */
+  if (new URLSearchParams(location.search).has('autotest')) {
+    (async () => {
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      await wait(9000);
+      const log = [];
+      for (const y of [1300, 2674, 50000]) {
+        window.scrollTo(0, y);
+        await wait(2500);
+        log.push('y' + y + '=f' + $('#frame-now').textContent + '/prog' + $('#scr-progress').style.height);
+      }
+      document.title = log.join(' | ');
+      document.body.setAttribute('data-autotest', log.join(' | '));
+    })();
+  }
 })();
